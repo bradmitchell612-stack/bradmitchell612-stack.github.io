@@ -1,10 +1,509 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>index</title>
-</head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brad Mitchell — Instructional Design</title>
+<meta name="description" content="Instructional design portfolio — cybersecurity education, learning tooling, and AI-integrated design work.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #14171c;
+    --surface: #1b1f26;
+    --surface-2: #21262f;
+    --line: #2c323d;
+    --text: #e9e7e0;
+    --text-dim: #9aa1ac;
+    --accent: #5fd3c4;
+    --accent-dim: #3a7d74;
+    --highlight: #e0a458;
+    --radius: 3px;
+    --max: 880px;
+  }
 
+  * { box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { animation: none !important; transition: none !important; }
+  }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'IBM Plex Sans', system-ui, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; }
+
+  a:focus-visible,
+  button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  .wrap {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  /* ---------- nav ---------- */
+
+  header.site-nav {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: rgba(20, 23, 28, 0.88);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .nav-inner {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 16px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .nav-name {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.85rem;
+    letter-spacing: 0.04em;
+    color: var(--text-dim);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 22px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.8rem;
+    letter-spacing: 0.03em;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: var(--text-dim);
+    transition: color 0.15s ease;
+  }
+
+  .nav-links a:hover { color: var(--accent); }
+
+  /* ---------- signal divider (signature element) ---------- */
+
+  .signal {
+    width: 100%;
+    height: 28px;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .signal path {
+    fill: none;
+    stroke: var(--line);
+    stroke-width: 1.5;
+  }
+
+  /* ---------- hero ---------- */
+
+  .hero {
+    padding: 96px 0 64px;
+  }
+
+  .hero-eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 18px;
+  }
+
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    line-height: 1.12;
+    margin: 0 0 22px;
+    max-width: 14ch;
+  }
+
+  .hero p.lede {
+    font-size: 1.1rem;
+    color: var(--text-dim);
+    max-width: 56ch;
+    margin: 0;
+  }
+
+  /* ---------- section shell ---------- */
+
+  section {
+    padding: 64px 0;
+  }
+
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 40px;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 16px;
+  }
+
+  .section-head h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 1.7rem;
+    margin: 0;
+  }
+
+  .section-head span {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--text-dim);
+  }
+
+  /* ---------- case studies ---------- */
+
+  .case {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 32px;
+    margin-bottom: 24px;
+  }
+
+  .case-tag {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+    background: rgba(95, 211, 196, 0.08);
+    border: 1px solid var(--accent-dim);
+    padding: 3px 9px;
+    border-radius: var(--radius);
+    margin-bottom: 14px;
+  }
+
+  .case h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 1.4rem;
+    margin: 0 0 6px;
+  }
+
+  .case .case-oneliner {
+    color: var(--text-dim);
+    margin: 0 0 22px;
+    font-size: 0.98rem;
+  }
+
+  .case-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-bottom: 22px;
+  }
+
+  @media (max-width: 680px) {
+    .case-grid { grid-template-columns: 1fr; gap: 18px; }
+  }
+
+  .case-grid h4 {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--highlight);
+    margin: 0 0 8px;
+  }
+
+  .case-grid p {
+    margin: 0;
+    font-size: 0.94rem;
+    color: var(--text);
+  }
+
+  .case-artifact {
+    border: 1px dashed var(--line);
+    border-radius: var(--radius);
+    padding: 18px;
+    text-align: center;
+    color: var(--text-dim);
+    font-size: 0.85rem;
+    font-family: 'IBM Plex Mono', monospace;
+    margin-top: 4px;
+  }
+
+  /* ---------- about ---------- */
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 40px;
+  }
+
+  @media (max-width: 680px) {
+    .about-grid { grid-template-columns: 1fr; }
+  }
+
+  .about-grid p { margin: 0 0 16px; }
+
+  .facts {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: 0.92rem;
+  }
+
+  .facts li {
+    padding: 10px 0;
+    border-top: 1px solid var(--line);
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .facts li:last-child { border-bottom: 1px solid var(--line); }
+
+  .facts .k {
+    font-family: 'IBM Plex Mono', monospace;
+    color: var(--text-dim);
+    font-size: 0.8rem;
+    white-space: nowrap;
+  }
+
+  .facts .v { text-align: right; }
+
+  /* ---------- contact ---------- */
+
+  .contact {
+    padding: 72px 0 96px;
+  }
+
+  .contact h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 1.8rem;
+    margin: 0 0 14px;
+  }
+
+  .contact p {
+    color: var(--text-dim);
+    max-width: 48ch;
+    margin: 0 0 28px;
+  }
+
+  .contact-links {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.85rem;
+    text-decoration: none;
+    padding: 12px 20px;
+    border-radius: var(--radius);
+    border: 1px solid var(--line);
+    color: var(--text);
+    transition: border-color 0.15s ease, color 0.15s ease;
+  }
+
+  .btn.primary {
+    background: var(--accent);
+    color: #101318;
+    border-color: var(--accent);
+    font-weight: 500;
+  }
+
+  .btn.primary:hover { background: #79ddd0; }
+
+  .btn:not(.primary):hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 24px 0;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--text-dim);
+  }
+</style>
+</head>
 <body>
+
+<header class="site-nav">
+  <div class="nav-inner">
+    <span class="nav-name">Brad Mitchell</span>
+    <ul class="nav-links">
+      <li><a href="#work">Work</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="hero">
+    <p class="hero-eyebrow">Instructional Design · Cybersecurity Education</p>
+    <h1>Designing judgment into the systems that teach.</h1>
+    <p class="lede">
+      I build cybersecurity courses and the tooling behind them &mdash; currently at ISC2,
+      previously leading design teams in higher ed. My focus is where instructional
+      design meets AI: knowledge architecture, workflow tools, and courses that hold up
+      under scrutiny from working security professionals.
+    </p>
+  </section>
+
+  <svg class="signal" viewBox="0 0 880 28" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0,14 L200,14 L210,4 L220,24 L230,14 L880,14"/>
+  </svg>
+
+  <section id="work">
+    <div class="section-head">
+      <h2>Selected work</h2>
+      <span>3 case studies</span>
+    </div>
+
+    <!-- CASE STUDY 1 -->
+    <article class="case">
+      <span class="case-tag">ISC2 &middot; Course Design</span>
+      <h3>[ Course title ]</h3>
+      <p class="case-oneliner">[ One line describing the course and who it's for. ]</p>
+      <div class="case-grid">
+        <div>
+          <h4>Problem</h4>
+          <p>[ What was missing, broken, or needed. What constraint made this hard. ]</p>
+        </div>
+        <div>
+          <h4>Process</h4>
+          <p>[ What you actually did &mdash; decisions made, SMEs involved, tradeoffs. ]</p>
+        </div>
+        <div>
+          <h4>Outcome</h4>
+          <p>[ What changed. What it enabled. Even directional results count. ]</p>
+        </div>
+      </div>
+      <div class="case-artifact">[ Artifact: storyboard excerpt, outline, or sanitized screenshot ]</div>
+    </article>
+
+    <!-- CASE STUDY 2 -->
+    <article class="case">
+      <span class="case-tag">ISC2 &middot; AI Tooling</span>
+      <h3>CE ID Design Studio</h3>
+      <p class="case-oneliner">A custom Copilot Studio agent built to run course audits and content alignment checks for the CE instructional design team.</p>
+      <div class="case-grid">
+        <div>
+          <h4>Problem</h4>
+          <p>[ What manual process this replaced, and why it didn't scale across the team. ]</p>
+        </div>
+        <div>
+          <h4>Process</h4>
+          <p>[ Knowledge base structure, operating modes, how retrieval drift was controlled, how it evolved. ]</p>
+        </div>
+        <div>
+          <h4>Outcome</h4>
+          <p>[ Adoption across the team, time saved, what it caught that manual review missed. ]</p>
+        </div>
+      </div>
+      <div class="case-artifact">[ Artifact: agent mode list, audit output screenshot, or architecture diagram ]</div>
+    </article>
+
+    <!-- CASE STUDY 3 -->
+    <article class="case">
+      <span class="case-tag">Missouri Online &middot; Design Leadership</span>
+      <h3>[ Project or program title ]</h3>
+      <p class="case-oneliner">[ One line &mdash; e.g. leading a team of 4&ndash;7 designers across four UM System campuses. ]</p>
+      <div class="case-grid">
+        <div>
+          <h4>Problem</h4>
+          <p>[ Coordination or quality challenge across a distributed team/campuses. ]</p>
+        </div>
+        <div>
+          <h4>Process</h4>
+          <p>[ How you standardized process, mentored the team, or scaled quality control. ]</p>
+        </div>
+        <div>
+          <h4>Outcome</h4>
+          <p>[ What improved &mdash; consistency, throughput, course quality. ]</p>
+        </div>
+      </div>
+      <div class="case-artifact">[ Artifact: process doc, template, or team workflow diagram ]</div>
+    </article>
+  </section>
+
+  <svg class="signal" viewBox="0 0 880 28" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0,14 L400,14 L410,24 L420,4 L430,14 L880,14"/>
+  </svg>
+
+  <section id="about">
+    <div class="section-head">
+      <h2>Background</h2>
+      <span>Ed.D. &middot; media production</span>
+    </div>
+    <div class="about-grid">
+      <div>
+        <p>
+          I'm a Senior Instructional Designer on ISC2's Continuing Education team, where I build
+          AI-focused cybersecurity courses and the knowledge architecture and tooling that support them.
+          Before ISC2, I managed a design team of four to seven instructional designers across four
+          University of Missouri System campuses.
+        </p>
+        <p>
+          My path into ID runs through audio engineering and sound design for film &mdash; a background
+          that shows up in how I think about pacing, layering, and attention. I hold an Ed.D. in
+          Educational Leadership and Policy Analysis from Mizzou, and I write independently on media
+          literacy and AI adoption for instructional designers.
+        </p>
+      </div>
+      <ul class="facts">
+        <li><span class="k">Role</span><span class="v">Sr. Instructional Designer, ISC2 CE</span></li>
+        <li><span class="k">Degree</span><span class="v">Ed.D., Educational Leadership &amp; Policy Analysis</span></li>
+        <li><span class="k">Prior</span><span class="v">Design Manager, Missouri Online</span></li>
+        <li><span class="k">Background</span><span class="v">Audio engineering, sound design for film</span></li>
+        <li><span class="k">Based in</span><span class="v">Columbia, Missouri</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <h2>Get in touch</h2>
+    <p>Open to conversations about cybersecurity education, AI-integrated design tooling, or instructional design leadership.</p>
+    <div class="contact-links">
+      <a class="btn primary" href="mailto:you@example.com">Email me</a>
+      <a class="btn" href="https://www.linkedin.com/in/your-profile" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn" href="resume.pdf" target="_blank" rel="noopener">Resume (PDF)</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">&copy; 2026 Brad Mitchell</div>
+</footer>
+
 </body>
 </html>
